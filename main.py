@@ -734,6 +734,10 @@ class Funcaptcha:
     def random_pixel_depth(self):
         pixel_depths = [24, 30]
         return random.choice(pixel_depths)
+    
+    def generate_h(self):
+        logical_core_counts = [4, 8, 12, 16, 20, 24, 28, 32, 40, 64]
+        return random.choice(logical_core_counts)
 
     def bda(self):
         time_now=time.time()
@@ -778,12 +782,12 @@ class Funcaptcha:
         ]
 
         audio_fps=["124.08072766105033","124.04651710136386","124.0807279153014","124.04344968475198","124.08072784824617","124.0396717004187","35.73832903057337","124.0807277960921","124.08075528279005","124.08072790785081","124.08072256811283","124.04345259929687","124.0434496849557","124.0434806260746","124.08072782589443","64.39679384598276","124.0434485301812","124.04423786447296","124.04453790388652","124.08072786314733","124.04569787243236","124.08072787804849","124.04211016517365","124.08072793765314","124.03962087413674","124.04457049137272","124.04344884395687","35.73833402246237","124.0434474653739","124.04855314017914","124.04347524535842","35.10893232002854","124.08072787802666","124.04048140646773","28.601430902344873","35.749968223273754","35.74996031448245","124.0434752900619","124.04347657808103","124.04215029208717","124.08072781844385","124.04369539513573","124.04384341745754","124.04557180271513","35.74996626004577","124.0807470110085","124.04066697827511","124.08072783334501","124.40494026464876","124.0434488439787","35.7383295930922","124.03549310178641","124.04304748237337","124.08075643483608","124.0437401577874","124.05001448364783","124.08072795627959","124.04345808873768","124.04051324382453","124.04347527516074","124.08072796745546","124.0431715620507"]
-
+        colordepth = self.random_pixel_depth()
         self.cfp=random.choice(canvases1)
         fp1=[
          "DNT:unknown",
          f"L:{self.locale}",
-         "D:24",
+         f"D:{colordepth}",
          "PR:1.100000023841858",
          f"S:{height},{width}",
          f"AS:{awidth},{aheight}",
@@ -802,7 +806,7 @@ class Funcaptcha:
          "JSF:Arial,Arial Black,Arial Narrow,Calibri,Cambria,Cambria Math,Comic Sans MS,Consolas,Courier,Courier New,Georgia,Helvetica,Impact,Lucida Console,Lucida Sans Unicode,Microsoft Sans Serif,MS Gothic,MS PGothic,MS Sans Serif,MS Serif,Palatino Linotype,Segoe Print,Segoe Script,Segoe UI,Segoe UI Light,Segoe UI Semibold,Segoe UI Symbol,Tahoma,Times,Times New Roman,Trebuchet MS,Verdana,Wingdings",
          "P:Chrome PDF Viewer,Chromium PDF Viewer,Microsoft Edge PDF Viewer,PDF Viewer,WebKit built-in PDF",
          "T:0,false,false",
-         "H:16",
+         f"H:{self.generate_h()}",
          "SWF:false"
       ]
         
@@ -917,7 +921,7 @@ class Funcaptcha:
             },
             {
                 "key":"screen_pixel_depth",
-                "value":self.random_pixel_depth()
+                "value":colordepth
             },
             {
                 "key":"navigator_device_memory",
